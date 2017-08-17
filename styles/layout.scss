@@ -1,7 +1,50 @@
 body {
   background-color: #EEE;
+  font-family: 'Istok Web', sans-serif;
 
   h1 {
     color: #244751;
+  }
+}
+
+div {
+  display: flex;
+
+  &.container {
+    justify-content: space-evenly;
+  }
+
+  &.card-header {
+    align-content: left;
+    background: #8DA9C4;
+  }
+
+  &.card-footer.text {
+    background: #8DA9C4;
+    justify-content: space-around;
+    flex-direction: column;
+  }
+
+  &.url-likes {
+    justify-content: space-between;
+  }
+
+  &.user-comments {
+    justify-content: space-between;
+  }
+}
+
+span {
+
+  &.url {
+
+  }
+
+  &.like {
+
+  }
+
+  &.user_name {
+
   }
 }
