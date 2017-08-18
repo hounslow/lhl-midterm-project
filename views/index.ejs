@@ -17,94 +17,172 @@
     <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
 
   </head>
-  <body id = "font_override">
-    <nav>
-      <img class ="nav_bar_logo" src='/docs/logo.png'>
-      <i class="fa fa-search" aria-hidden="true"></i>
-      <i class="fa fa-plus" aria-hidden="true"></i>
-      <div class = "user_button">
-      <i class="fa fa-user" aria-hidden="true"></i>
-      username
-      </div>
+  <body id = "font_override" class="container">
+
+    <nav class="navbar">
+      <a class ="navbar-brand" href="#">
+        <img class="nav_bar_logo" src='/docs/logo.png'>
+      </a>
+        <a class ="nav-item" href="#">
+          <i class="fa fa-search fa-2x" aria-hidden="true"></i>
+        </a>
+        <a class ="nav-item" href="#">
+          <i class="fa fa-plus fa-2x" aria-hidden="true"></i>
+        </a>
+        <a class = "nav-item user_button" href="#">
+          <i class="fa fa-user" aria-hidden="true"></i>
+          username
+        </a>
     </nav>
+
     <main>
-      <div class = "main_header">
+      <h3 class = "main_header">
+      <span class="header_horizontal_line">
       All Resources
-      </div>
-      <section class = "category">
-        Category
+      </span>
+      </h3>
+
+
+      <section class="col-sm-5 category">
+       Category
+        <select name="all">
+          <option value ="Computer Science(hard_coded)">Computer Science</option>
+          <option value ="Web Design(hard_coded)">Web Design</option>
+          <option value ="Others(hard_coded)">Others</option>
+        </select>
+      </section>
+
+
+      <section class="container">
+        <div class="row justify-content-around">
+          <article class="col-4 resource-block">
+            <div class="card-header">
+              Resource Title
+            </div>
+            <div class="card-text">
+              Resource Description here and there blah blah
+            </div>
+            <div class="card-footer">
+              <div class="url-like">
+                <span class="url"> www.google.ca/laiwjf </span>
+                <span class="like"> <i class="fa fa-heart-o" aria-hidden="true"></i> <i class="fa fa-heart" aria-hidden="true"></i> 5 </span>
+              </div>
+              <div class="username-comments">
+                <span class="username">By username_1</span>
+                <span class="comments"> <i class="fa fa-comments" aria-hidden="true"></i> Comments </span>
+              </div>
+            </div>
+          </article>
+
+
+          <article class="col-4 resource-block">
+            <div class="card-header">
+              Resource Title
+            </div>
+            <div class="card-text">
+              Resource Description here and there blah blah this is going to be longer description to see how its going to look with the
+            </div>
+            <div class="card-footer">
+              <div class="url-like">
+                <span class="url"> www.google.ca/laiwjf_2394 </span>
+                <span class="like"> <i class="fa fa-heart-o" aria-hidden="true"></i> <i class="fa fa-heart" aria-hidden="true"></i> 5 </span>
+              </div>
+              <div class="username-comments">
+                <span class="username">By username_1</span>
+                <span class="comments"> <i class="fa fa-comments" aria-hidden="true"></i> Comments </span>
+              </div>
+            </div>
+          </article>
+
+
+          <article class="col-4 resource-block">
+            <div class="card-header">
+              Resource Title
+            </div>
+            <div class="card-text">
+              Resource Description here and there blah blah
+            </div>
+            <div class="card-footer">
+              <div class="url-like">
+                <span class="url"> www.google.ca/laiwjf_2394 </span>
+                <span class="like"> <i class="fa fa-heart-o" aria-hidden="true"></i> <i class="fa fa-heart" aria-hidden="true"></i> 5 </span>
+              </div>
+              <div class="username-comments">
+                <span class="username">By username_1</span>
+                <span class="comments"> <i class="fa fa-comments" aria-hidden="true"></i> Comments </span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+
+      <section class="container">
+        <div class="row justify-content-around">
+          <article class="col-4 resource-block">
+            <div class="card-header">
+              Resource Title
+            </div>
+            <div class="card-text">
+              Resource Description here and there blah blah
+            </div>
+            <div class="card-footer">
+              <div class="url-like">
+                <span class="url"> www.google.ca/laiwjf_2394 </span>
+                <span class="like"> <i class="fa fa-heart-o" aria-hidden="true"></i> <i class="fa fa-heart" aria-hidden="true"></i> 5 </span>
+              </div>
+              <div class="username-comments">
+                <span class="username">By username_1</span>
+                <span class="comments"> <i class="fa fa-comments" aria-hidden="true"></i> Comments </span>
+              </div>
+            </div>
+          </article>
+
+
+          <article class="col-4 resource-block">
+            <div class="card-header">
+              Resource Title
+            </div>
+            <div class="card-text">
+              Resource Description here and there blah blah this is going to be longer description to see how its going to look with the
+            </div>
+            <div class="card-footer">
+              <div class="url-like">
+                <span class="url"> www.google.ca/laiwjf_2394 </span>
+                <span class="like"> <i class="fa fa-heart-o" aria-hidden="true"></i> <i class="fa fa-heart" aria-hidden="true"></i> 5 </span>
+              </div>
+              <div class="username-comments">
+                <span class="username">By username_1</span>
+                <span class="comments"> <i class="fa fa-comments" aria-hidden="true"></i> Comments </span>
+              </div>
+            </div>
+          </article>
+
+
+          <article class="col-4 resource-block">
+            <div class="card-header">
+              Resource Title
+            </div>
+            <div class="card-text">
+              Resource Description here and there blah blah
+            </div>
+            <div class="card-footer">
+              <div class="url-like">
+                <span class="url"> www.google.ca/laiwjf_2394 </span>
+                <span class="like"> <i class="fa fa-heart-o" aria-hidden="true"></i> <i class="fa fa-heart" aria-hidden="true"></i> 5 </span>
+              </div>
+              <div class="username-comments">
+                <span class="username">By username_1</span>
+                <span class="comments"> <i class="fa fa-comments" aria-hidden="true"></i> Comments </span>
+              </div>
+            </div>
+          </article>
+        </div>
       </section>
 
 
 
-      <div class="container">
-        <div class="row justify-content-around">
-          <!-- <div class="col"> -->
-            <div class="card text col-3">
-              <div class="card-header">
-                Resource Title
-              </div>
-              <div class="card-block">
-                <p class="card-text"> Resource Description </p>
-              </div>
-              <div class="card-footer text">
-                <div class="url-likes">
-                  <span class = "url"> www.google.ca </span>
-                  <span class = "like"> <i class="fa fa-heart-o" aria-hidden="true"></i> <i class="fa fa-heart" aria-hidden="true"></i> 5 </span>
-                </div>
-                <div class="user-comments">
-                  <span class = "user_name"> By username_1 </span>
-                  <a href="#" class="btn btn-primary">  <i class="fa fa-comments" aria-hidden="true"></i> Comments</a>
-                </div>
-              </div>
-            </div>
-          <!-- </div> -->
-          <!-- <div class="col"> -->
-            <div class="card text col-3">
-              <div class="card-header">
-                Resource Title
-              </div>
-              <div class="card-block">
-                <p class="card-text"> Resource Description</p>
-              </div>
-              <div class="card-footer text">
-                <div class="url-likes">
-                  <span class = "url"> www.google.ca </span>
-                  <span class = "like"> <i class="fa fa-heart-o" aria-hidden="true"></i> <i class="fa fa-heart" aria-hidden="true"></i> 5 </span>
-                </div>
-                <div class="user-comments">
-                  <span class = "user_name"> By username_1 </span>
-                  <a href="#" class="btn btn-primary">  <i class="fa fa-comments" aria-hidden="true"></i> Comments</a>
-                </div>
-              </div>
-            </div>
-          <!-- </div> -->
-          <!-- <div class="col"> -->
-            <div class="card text col-3">
-              <div class="card-header">
-                Resource Title
-              </div>
-              <div class="card-block">
-                <p class="card-text"> Resource Description </p>
-              </div>
-              <div class="card-footer text">
-                <div class="url-likes">
-                  <span class = "url"> www.google.ca </span>
-                  <span class = "like"> <i class="fa fa-heart-o" aria-hidden="true"></i> <i class="fa fa-heart" aria-hidden="true"></i> 5 </span>
-                </div>
-                <div class="user-comments">
-                  <span class = "user_name"> By username_1 </span>
-                  <a href="#" class="btn btn-primary">  <i class="fa fa-comments" aria-hidden="true"></i> Comments</a>
-                </div>
-              </div>
-            </div>
-          <!-- </div> -->
-        </div>
-      </div>
-
-
     </main>
-    <h1>Hello, world!</h1>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

@@ -1,3 +1,63 @@
+$primary-color: #8DA9C4;
+$card-hover-color: #13315C;
+$card-hover-font: #F4F4F4;
+
+.nav_bar {
+}
+
+.nav_bar_logo {
+  height: 50%;
+  width: 50%;
+}
+
+a {
+  color: black;
+  size: 200%
+}
+
+a .fa {
+  color: black;
+}
+
+
+.user_button {
+  background: $primary-color;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+
+
+/*main*/
+
+h3 {
+  position: relative;
+  padding-top: 20px;
+}
+
+.header_horizontal_line {
+  background-color: #EEE;
+  padding-right: 10px;
+  padding-left: 30px;
+}
+
+h3:after {
+  content:"";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 0.5em;
+  border-top: 1px solid black;
+  z-index: -1;
+}
+
+.category {
+  padding: 20px 0 0 30px;
+}
+
+
+
 body {
   background-color: #EEE;
   font-family: 'Istok Web', sans-serif;
@@ -7,44 +67,70 @@ body {
   }
 }
 
-div {
-  display: flex;
 
-  &.container {
-    justify-content: space-evenly;
+// Resource Cards
+.container {
+  padding: 30px 30px;
+}
+
+.resource-block {
+  &:hover .card-header {
+    background: $card-hover-color;
+    color: $card-hover-font;
   }
-
-  &.card-header {
-    align-content: left;
-    background: #8DA9C4;
+  &:hover .card-footer {
+    background: $card-hover-color;
+    color: $card-hover-font;
   }
-
-  &.card-footer.text {
-    background: #8DA9C4;
-    justify-content: space-around;
-    flex-direction: column;
-  }
-
-  &.url-likes {
-    justify-content: space-between;
-  }
-
-  &.user-comments {
-    justify-content: space-between;
+  &:hover .card-text {
+    color: #030C17;
   }
 }
 
-span {
+.card-header {
+  font-size: 23px;
+  background: $primary-color;
+}
 
-  &.url {
 
-  }
+.card-text {
+  background-color: #F3F5F8;
+  font-size: 16px;
+  padding: 10px;
+  height: 150px;
+  color: #9B9B9B;
+}
 
-  &.like {
+.card-footer {
+  background: $primary-color;
+}
 
-  }
+.url-like {
+}
 
-  &.user_name {
 
-  }
+.url {
+  font-size: 10px;
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 150px
+}
+
+.like {
+  display: inline-block;
+  float: right;
+}
+
+
+.username-comments {
+}
+
+.username {
+  font-size: 10px;
+}
+
+.comments {
+  float: right
 }
