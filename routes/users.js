@@ -1,10 +1,15 @@
 "use strict";
 
 const express = require('express');
-const router  = express.Router();
-const cookieParser = require('cookie-parser')
+// const methodOverride = require('method-override')
+// const bodyParser = require('body-parser');
+// const cookieParser = require('cookie-parser')
 
-router.use(cookieParser());
+const router  = express.Router();
+
+// router.use(cookieParser());
+// router.use(bodyParser.urlencoded({extended: true}));
+// router.use(methodOverride('_method'));
 
 module.exports = (knex) => {
   router.get("/", (req, res) => {

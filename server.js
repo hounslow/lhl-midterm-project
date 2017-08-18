@@ -13,12 +13,19 @@ const knexConfig  = require("./knexfile");
 const knex        = require("knex")(knexConfig[ENV]);
 const morgan      = require('morgan');
 const knexLogger  = require('knex-logger');
+const methodOverride = require('method-override')
+const cookieParser = require('cookie-parser')
+
 
 // Seperated Routes for each Resource
 const usersRoutes = require("./routes/users");
 const resourcesRoutes = require("./routes/resources");
 const commentsRoutes = require("./routes/comments");
 const topicsRoutes = require("./routes/topics");
+
+app.use(cookieParser());
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(methodOverride('_method'));
 
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
 // 'dev' = Concise output colored by response status for development use.
