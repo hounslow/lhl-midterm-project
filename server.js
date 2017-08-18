@@ -46,14 +46,27 @@ app.use("/styles", sass({
 app.use(express.static("public"));
 
 // Mount all resource routes
-app.use("/api/users", usersRoutes(knex));
-app.use("/api/resources", resourcesRoutes(knex));
-app.use("/api/comments", commentsRoutes(knex));
-app.use("/api/topics", topicsRoutes(knex));
+// app.use("/api/users", usersRoutes(knex));
+// app.use("/api/resources", resourcesRoutes(knex));
+// app.use("/api/comments", commentsRoutes(knex));
+// app.use("/api/topics", topicsRoutes(knex));
 
 // Home page
 app.get("/", (req, res) => {
-  res.render("index");
+  knex.select("name").from("topics").then((results) => {
+    const topics = {results};
+    res.render("index", topics);
+  });
+});
+
+app.post("/", (req, res) => {
+  knex('topics').select("id").where('name', req.body.select_topic).then((topic_id) => {
+    knex('resources')
+    .insert({user_id: 1, topic_id: topic_id[0].id, title: req.body.resource_title, url: req.body.resource_url, description: req.body.resource_description})
+    .then((results) => {
+      res.redirect('/');
+    });
+  });
 });
 
 app.listen(PORT, () => {
