@@ -29,7 +29,7 @@ module.exports = (knex) => {
     })
   });
 
-  app.post("/login/:id", (req, res) => {
+  router.post("/login/:id", (req, res) => {
     res.cookie('user_id', req.params.id);
     res.redirect('/');
 });
