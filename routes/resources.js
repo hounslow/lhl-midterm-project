@@ -13,7 +13,12 @@ module.exports = (knex) => {
   //   });
   // });
   router.get("/", (req, res) => {
-    res.render("new_resource");
+   knex.select("name").from("topics").then((results) => {
+    // const topics = {results};
+    // console.log(topics);
+    const topics = {results};
+    res.render("new_resource", topics);
   });
+});
   return router;
 }

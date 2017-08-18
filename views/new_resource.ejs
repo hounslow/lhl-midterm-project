@@ -59,9 +59,9 @@
       <label for="inputDescription3" class="col-sm-2 col-form-label">Topic</label>
       <div class="col-sm-5">
         <select name="select">
-          <option value="value1">Value 1</option>
-          <option value="value2" selected>Value 2</option>
-          <option value="value3">Value 3</option>
+          <% for (topic of results) { %>
+          <option value="<%=topic.name%>"><%=topic.name%></option>
+        <% } %>
         </select>
       </div>
     </div>
