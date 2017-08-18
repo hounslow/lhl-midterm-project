@@ -40,8 +40,8 @@
 //     }
 //   });
 // });
-
 $(function () {
+
 $("i.fa.fa-plus.fa-2x").click(function() {
   $("form.container").slideToggle("fast");
     $("input#resource_title").focus();
