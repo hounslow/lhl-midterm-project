@@ -101,6 +101,21 @@ app.post("/", (req, res) => {
   });
 });
 
+// My Resources page
+app.get("/:id/myresources", (req, res) => {
+  if (!req.session.user_id){
+    res.redirect('/login')
+  }
+  else {
+  knex.select("name").from("topics").then((topics) => {
+    knex.select("name").from("users").where("id", req.session.user_id).then((user_name) => {
+      let templateVariable = {topics, user_name, user_id: req.session.user_id};
+      res.render("myresources", templateVariable);
+    });
+  });
+}
+});
+
 app.listen(PORT, () => {
   console.log("Example app listening on port " + PORT);
 });
