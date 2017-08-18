@@ -57,12 +57,13 @@ app.get('/:id', (req, res) => {
 });
 
 app.put('/:id', (req, res) => {
-  knex('users')
-    .where('id', req.cookies.user_id)
-    .update({name: req.body.user_name, email: req.body.user_email, password: req.body.user_password})
+  knex('users').select('*').where('id', req.cookies.user_id).then((user_info) => {
+    knex('users').where('id', req.cookies.user_id)
+    .update({name: req.body.user_name || user_info[0].name , email: req.body.user_email || user_info[0].email, password: req.body.user_password || user_info[0].password})
     .then((results) => {
       res.redirect('/');
     });
+  });
 });
 
 // Home page
