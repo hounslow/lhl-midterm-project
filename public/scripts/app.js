@@ -19,6 +19,7 @@ $(() => {
       $("<div>").text(resource.title + " --> " + resource.url + " --> " + resource.description).appendTo($("body"));
     }
   });
+});
 
   $.ajax({
     method: "GET",
