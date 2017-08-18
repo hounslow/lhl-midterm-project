@@ -45,7 +45,7 @@
           <label for="inputTopicName3" class="col-sm-2 col-form-label">Topic</label>
           <div class="col-sm-5">
             <select name="select_topic">
-              <% for (topic of results) { %>
+              <% for (topic of topics) { %>
               <option value="<%=topic.name%>"><%=topic.name%></option>
             <% } %>
             </select>
@@ -70,7 +70,7 @@
       <section class="col-sm-5 category">
         Category
         <select name="all">
-          <% for (topic of results) { %>
+          <% for (topic of topics) { %>
             <option value="<%=topic.name%>"><%=topic.name%></option>
             <% } %>
           </select>

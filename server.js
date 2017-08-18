@@ -8,13 +8,13 @@ const express     = require("express");
 const bodyParser  = require("body-parser");
 const sass        = require("node-sass-middleware");
 const app         = express();
+const cookieSession = require('cookie-session');
 
 const knexConfig  = require("./knexfile");
 const knex        = require("knex")(knexConfig[ENV]);
 const morgan      = require('morgan');
 const knexLogger  = require('knex-logger');
 const methodOverride = require('method-override');
-const cookieParser = require('cookie-parser');
 
 // Seperated Routes for each Resource
 const usersRoutes = require("./routes/users");
@@ -22,7 +22,12 @@ const resourcesRoutes = require("./routes/resources");
 const commentsRoutes = require("./routes/comments");
 const topicsRoutes = require("./routes/topics");
 
-app.use(cookieParser());
+app.use(cookieSession({
+  name: 'session',
+  secret: "Some kind of secret here",
+  maxAge: 24 * 60 * 60 * 1000 // 24 hours
+}))
+
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(methodOverride('_method'));
 
@@ -50,15 +55,20 @@ app.use(express.static("public"));
 // app.use("/api/comments", commentsRoutes(knex));
 // app.use("/api/topics", topicsRoutes(knex));
 
-app.get('/:id', (req, res) => {
-  res.cookie('user_id', req.params.id);
-  const templateVariable = {user_id: req.cookies.user_id};
-  res.render('update_profile', templateVariable);
+app.post('/login/:id', (req, res) => {
+  req.session.user_id = req.params.id;
+  const templateVariable = {user_id: req.session.user_id};
+  return res.redirect('/');
+  // res.render('update_profile', templateVariable);
+});
+
+app.get('/login', (req, res) => {
+  res.render('login');
 });
 
 app.put('/:id', (req, res) => {
-  knex('users').select('*').where('id', req.cookies.user_id).then((user_info) => {
-    knex('users').where('id', req.cookies.user_id)
+  knex('users').select('*').where('id', req.session.user_id).then((user_info) => {
+    knex('users').where('id', req.session.user_id)
     .update({name: req.body.user_name || user_info[0].name , email: req.body.user_email || user_info[0].email, password: req.body.user_password || user_info[0].password})
     .then((results) => {
       res.redirect('/');
@@ -68,10 +78,17 @@ app.put('/:id', (req, res) => {
 
 // Home page
 app.get("/", (req, res) => {
-  knex.select("name").from("topics").then((results) => {
-    const topics = {results};
-    res.render("index", topics);
+  if (!req.session.user_id){
+    res.redirect('/login')
+  }
+  else {
+  knex.select("name").from("topics").then((topics) => {
+    knex.select("name").from("users").where("id", req.session.user_id).then((user_name) => {
+      let templateVariable = {topics, user_name, user_id: req.session.user_id};
+      res.render("index", templateVariable);
+    });
   });
+}
 });
 
 app.post("/", (req, res) => {
