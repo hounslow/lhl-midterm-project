@@ -13,9 +13,8 @@ const knexConfig  = require("./knexfile");
 const knex        = require("knex")(knexConfig[ENV]);
 const morgan      = require('morgan');
 const knexLogger  = require('knex-logger');
-const methodOverride = require('method-override')
-const cookieParser = require('cookie-parser')
-
+const methodOverride = require('method-override');
+const cookieParser = require('cookie-parser');
 
 // Seperated Routes for each Resource
 const usersRoutes = require("./routes/users");
@@ -50,6 +49,21 @@ app.use(express.static("public"));
 // app.use("/api/resources", resourcesRoutes(knex));
 // app.use("/api/comments", commentsRoutes(knex));
 // app.use("/api/topics", topicsRoutes(knex));
+
+app.get('/:id', (req, res) => {
+  res.cookie('user_id', req.params.id);
+  const templateVariable = {user_id: req.cookies.user_id};
+  res.render('update_profile', templateVariable);
+});
+
+app.put('/:id', (req, res) => {
+  knex('users')
+    .where('id', req.cookies.user_id)
+    .update({name: req.body.user_name, email: req.body.user_email, password: req.body.user_password})
+    .then((results) => {
+      res.redirect('/');
+    });
+});
 
 // Home page
 app.get("/", (req, res) => {
