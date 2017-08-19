@@ -32,6 +32,26 @@ form {
   }
 }
 
+.navbar-form {
+  display: none;
+}
+
+nav div.form-group {
+  margin: 0;
+  display: inline-block;
+}
+
+nav input.form-control {
+  display: inline-block;
+}
+
+nav button.btn {
+  display: inline-block;
+}
+
+
+
+
 /*main*/
 
 h3 {

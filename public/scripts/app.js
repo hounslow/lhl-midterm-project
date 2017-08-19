@@ -47,6 +47,11 @@ $(function () {
     $("input#resource_title").focus();
   });
 
+$("i.fa.fa-search.fa-2x").click(function() {
+  $("form.navbar-form").toggle("slow");
+    $("input.form-control").focus();
+});
+
   $.ajax({
     method: "GET",
     url: "/get/resources"
