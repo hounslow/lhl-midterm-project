@@ -80,6 +80,7 @@ app.get("/get/resources", (req, res) => {
   });
 });
 
+
 app.get("/", (req, res) => {
   if (!req.session.user_id){
     res.redirect('/login')

@@ -78,4 +78,11 @@ $("i.fa.fa-search.fa-2x").click(function() {
         </article>`));
       }
     });
-  });
+
+    // $("span.like").click(function () {
+    //   $(this).find("i").toggleClass("fa.fa-heart-o fa.fa-heart")
+    // });
+    $("span.like").click(function () {
+      $(this).find("i").toggleClass("fa.fa-heart-o fa.fa-heart")
+    });
+  })
