@@ -79,10 +79,13 @@ $("i.fa.fa-search.fa-2x").click(function() {
       }
     });
 
-    // $("span.like").click(function () {
-    //   $(this).find("i").toggleClass("fa.fa-heart-o fa.fa-heart")
-    // });
-    $("span.like").click(function () {
-      $(this).find("i").toggleClass("fa.fa-heart-o fa.fa-heart")
-    });
+  $(".nav_bar_logo").click (function() {
+    window.location.href = "/";
   })
+
+  $(".user_button").click( function() {
+    window.location.href = "/:id/myresources";
+  })
+
+
+  });
