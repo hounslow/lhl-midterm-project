@@ -49,12 +49,6 @@ app.use("/styles", sass({
 }));
 app.use(express.static("public"));
 
-// Mount all resource routes
-// app.use("/api/users", usersRoutes(knex));
-// app.use("/api/resources", resourcesRoutes(knex));
-// app.use("/api/comments", commentsRoutes(knex));
-// app.use("/api/topics", topicsRoutes(knex));
-
 app.post('/login/:id', (req, res) => {
   req.session.user_id = req.params.id;
   const templateVariable = {user_id: req.session.user_id};
@@ -64,6 +58,10 @@ app.post('/login/:id', (req, res) => {
 
 app.get('/login', (req, res) => {
   res.render('login');
+});
+
+app.get('/get_url/:url', (req, res) => {
+  res.redirect(req.params.url);
 });
 
 app.put('/:id', (req, res) => {
@@ -82,7 +80,6 @@ app.get("/get/resources", (req, res) => {
   });
 });
 
-// Home page
 app.get("/", (req, res) => {
   if (!req.session.user_id){
     res.redirect('/login')
@@ -96,7 +93,6 @@ app.get("/", (req, res) => {
   });
 }
 });
-
 
 app.post("/", (req, res) => {
   knex('topics').select("id").where('name', req.body.select_topic).then((topic_id) => {
