@@ -26,7 +26,11 @@ a .fa {
   border-radius: 5px;
 }
 
-
+form {
+  &.container {
+    display: none;
+  }
+}
 
 /*main*/
 
@@ -85,7 +89,10 @@ body {
   &:hover .card-text {
     color: #030C17;
   }
+  padding: 20px;
 }
+
+
 
 .card-header {
   font-size: 23px;
