@@ -78,4 +78,16 @@ $("i.fa.fa-search.fa-2x").click(function() {
         </article>`));
       }
     });
+
+  $(".nav_bar_logo").click (function() {
+    window.location.href = "/";
+  })
+
+  $(".user_button").click( function() {
+    window.location.href = "/:id/myresources";
+  })
+
+
   });
+
+
