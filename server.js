@@ -76,6 +76,12 @@ app.put('/:id', (req, res) => {
   });
 });
 
+app.get("/get/resources", (req, res) => {
+  knex('resources').select("*").then((resources) => {
+    res.json(resources);
+  });
+});
+
 // Home page
 app.get("/", (req, res) => {
   if (!req.session.user_id){
