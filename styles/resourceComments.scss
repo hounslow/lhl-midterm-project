@@ -2,9 +2,6 @@ $primary-color: #8DA9C4;
 $card-hover-color: #13315C;
 $card-hover-font: #F4F4F4;
 
-.nav_bar {
-}
-
 .nav_bar_logo {
   height: 50%;
   width: 50%;
@@ -22,8 +19,8 @@ a .fa {
 
 .user_button {
   background: $primary-color;
-  padding: 10px;
   border-radius: 5px;
+  padding: 10px;
 }
 
 form {
@@ -37,8 +34,8 @@ form {
 }
 
 nav div.form-group {
-  margin: 0;
   display: inline-block;
+  margin: 0;
 }
 
 nav input.form-control {
@@ -72,10 +69,6 @@ h3 {
   padding-top: 20px;
 }
 
-.header_horizontal_line {
-
-}
-
 h3:after {
   content:"";
   position: absolute;
@@ -107,9 +100,26 @@ div.card-header {
   background: #8DA9C4;
 }
 
+div.container_comments {
+  align-content: center;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+
+}
+
+h5.user_name {
+  padding-top: 3em;
+  font-weight: bold;
+}
+
+h8.comments_field {
+  padding-bottom: 2em;
+}
+
 p.card-text {
-  padding: 75px 0px;
   background: #F3F5F8;
+  padding: 75px 0px;
   word-wrap: break-word;
 }
 

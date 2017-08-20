@@ -6,7 +6,7 @@ $(function () {
   }).done((comments) => {
     for (comment of comments){
       $("div.container_comments").prepend($(`
-        <H6 class = "user_name"> ${comment.name} </H6><br>
+        <H5 class = "user_name"> ${comment.name}: </H5><br>
         <H8 class = "comments_field"> ${comment.content} </H8>
         `));
       }
