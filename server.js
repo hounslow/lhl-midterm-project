@@ -65,11 +65,14 @@ app.get('/logout', (req, res) => {
   res.render('logout');
 });
 
+
+// Get update profile page
 app.get('/:id/profile', (req, res) => {
   const templateVariable = {user_name: req.session.user_name, user_id: req.session.user_id};
   res.render("update_profile", templateVariable);
 });
 
+// Update profile
 app.put('/:id', (req, res) => {
   knex('users').select('*').where('id', req.session.user_id).then((user_info) => {
     knex('users').where('id', req.session.user_id)
@@ -81,12 +84,13 @@ app.put('/:id', (req, res) => {
   });
 });
 
-app.get("/get/resources", (req, res) => {
-  knex.select('*').from('resources').fullOuterJoin('users', 'users.id', 'resources.user_id').then((resources) => {
+app.get("/resources", (req, res) => {
+  knex.select('*').from('resources').innerJoin('users', 'users.id', 'resources.user_id').then((resources) => {
     console.log(resources);
     res.json(resources);
   });
 });
+
 
 app.get("/:id/user_resources", (req, res) => {
   knex.select('*').from('resources').fullOuterJoin('users', 'users.id', 'resources.user_id').where('user_id', req.params.id).then((resources) => {
@@ -156,8 +160,8 @@ app.get("/:query/search", (req, res) => {
 });
 
 app.get("/:resource_id/comments", (req, res) => {
-    knex.select("*").from('comments').fullOuterJoin('users', 'users.id', 'comments.user_id')
-    .where("comments.resource_id", req.params.resource_id).then((comments) => {
+    knex.select("*").from('comments').innerJoin('users', 'users.id', 'comments.user_id')
+    .where("resource_id", req.params.resource_id).then((comments) => {
     const templateVariable = {user_name: req.session.user_name, user_id: req.session.user_id, comments, resource_id: req.params.resource_id};
     res.render("resourceComments", templateVariable);
     });

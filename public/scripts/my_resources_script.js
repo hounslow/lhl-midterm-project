@@ -55,10 +55,10 @@ $(function () {
       window.location.href = myUrl;
     });
 
-    $(".nav_bar_logo").click (function() {
+    $(".nav_bar_logo_name").click (function() {
       window.location.href = "/";
-    })
-
+    });
+    
     $("a.nav-item.user_button").click(function() {
       const user_id = $(this).find("div.hidden_user_id").text();
       window.location.href = `/${user_id}/myresources`;

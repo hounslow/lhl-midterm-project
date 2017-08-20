@@ -1,8 +1,8 @@
 $(function () {
-
- $.ajax({
+  const resource_id = $("div.hidden_resource_id").text();
+  $.ajax({
     method: "GET",
-    url: `/1/all_comments`
+    url: `/${resource_id}/all_comments`
   }).done((comments) => {
     for (comment of comments){
       $("div.container_comments").prepend($(`
@@ -11,34 +11,37 @@ $(function () {
         `));
       }
     });
-});
 
-$.ajax({
-  method: "GET",
-  url: `/1/resource`
+  $.ajax({
+    method: "GET",
+    url: `/${resource_id}/resource`
   }).done((resource) => {
     $('div.container1').append($(`
       <div class="card-header">
-        ${resource[0].title}
+      ${resource[0].title}
       </div>
       <div class="card-block">
-        <p class="card-text"> ${resource[0].description} </p>
+      <p class="card-text"> ${resource[0].description} </p>
       </div>
       <div class="card-footer text">
-        <div class="user-comments">
-          <span class = "user_name"> ${resource[0].name} </span>
-          <span class = "like"> <i class="fa fa-heart-o" aria-hidden="true"></i> <i class="fa fa-heart" aria-hidden="true"></i> 5 </span>
-        </div>
+      <div class="user-comments">
+      <span class = "user_name"> ${resource[0].name} </span>
+      <span class = "like"> <i class="fa fa-heart-o" aria-hidden="true"></i> <i class="fa fa-heart" aria-hidden="true"></i> 5 </span>
+      </div>
       </div>`));
-  });
+    });
 
+    $(".nav_bar_logo_name.d-inline-block.align-top").click (function() {
+      window.location.href = "/";
+    });
 
-$("form").on("submit", function(event){
-  var form = this;
-  $.ajax({
-    url: "/:resource_id/comments",
-    method: "POST"
-  }).done(function(){
-    form.reset();
+    $("form").on("submit", function(event){
+      var form = this;
+      $.ajax({
+        url: "/:resource_id/comments",
+        method: "POST"
+      }).done(function(){
+        form.reset();
+      });
     });
   });

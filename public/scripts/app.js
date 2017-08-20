@@ -31,7 +31,7 @@ $(function () {
 
   $.ajax({
     method: "GET",
-    url: "/get/resources"
+    url: "/resources"
   }).done((resources) => {
     for (resource of resources){
       $("div.row.justify-content-around").prepend($(`
@@ -123,9 +123,9 @@ $(function () {
           }
         });
         event.preventDefault();
-
       });
-      $(".nav_bar_logo").click (function() {
+
+      $(".nav_bar_logo_name").click (function() {
         window.location.href = "/";
       })
 
@@ -133,9 +133,4 @@ $(function () {
         const user_id = $(this).find("div.hidden_user_id").text();
         window.location.href = `/${user_id}/myresources`;
       });
-      // $("div.update_user_profile").click(function() {
-      //   const user_id = $('a.nav-item.user_button').find("div.hidden_user_id").text();
-      //   console.log(user_id);
-      //   window.location.href = `/${user_id}/profile`;
-      // });
     });

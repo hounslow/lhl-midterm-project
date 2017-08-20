@@ -16,6 +16,11 @@ a .fa {
   color: black;
 }
 
+div {
+  &.hidden_resource_id {
+    display: none;
+  }
+}
 
 .user_button {
   background: $primary-color;
