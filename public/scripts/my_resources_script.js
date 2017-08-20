@@ -10,21 +10,13 @@ $(function () {
     $("input.form-control").focus();
   });
 
-  $("i.fa.fa-heart").click(function() {
-    $("i.fa.fa-heart-o").toggle("fast");
-    $("i.fa.fa-heart").toggle("fast");
-  });
-
-  $("i.fa.fa-heart-o").click(function() {
-    $("i.fa.fa-heart-o").toggle("fast");
-    $("i.fa.fa-heart").toggle("fast");
-  });
+  const user_id = $('div.hidden_user_id').text();
 
   $.ajax({
     method: "GET",
-    url: "/get/resources"
+    url: `/${user_id}/user_resources`
   }).done((resources) => {
-    for (resource of resources){
+    for (resource of resources) {
       $("div.row.justify-content-around").prepend($(`
         <article class="col-4 resource-block">
         <div class="card-header">
@@ -36,10 +28,7 @@ $(function () {
         <div class="card-footer">
         <div class="url-like">
         <span class="url"> ${resource.url}</span>
-        <span class="like">
-        <i class="fa fa-heart-o" aria-hidden="true"></i>
-        <i class="fa fa-heart" aria-hidden="true"></i>
-        </span>
+        <span class="like"> <i class="fa fa-heart-o" aria-hidden="true"></i> <i class="fa fa-heart" aria-hidden="true"></i> 5 </span>
         </div>
 
         <div class="username-comments">
@@ -53,7 +42,6 @@ $(function () {
         </article>`));
       }
     });
-
 
     $(document).on('click', 'span.comments', function() {
       const resource_id = $(this).find("div.resource_id_hidden").text();
@@ -76,4 +64,3 @@ $(function () {
       window.location.href = `/${user_id}/myresources`;
     });
   });
-
