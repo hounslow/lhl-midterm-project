@@ -6,10 +6,10 @@ $(function () {
     $("input#resource_title").focus();
   });
 
-$("i.fa.fa-search.fa-2x").click(function() {
-  $("form.navbar-form").toggle("slow");
+  $("i.fa.fa-search.fa-2x").click(function() {
+    $("form.navbar-form").toggle("slow");
     $("input.form-control").focus();
-});
+  });
 
   $.ajax({
     method: "GET",
@@ -29,22 +29,30 @@ $("i.fa.fa-search.fa-2x").click(function() {
         <span class="url"> ${resource.url}</span>
         <span class="like"> <i class="fa fa-heart-o" aria-hidden="true"></i> <i class="fa fa-heart" aria-hidden="true"></i> 5 </span>
         </div>
+
         <div class="username-comments">
         <span class="username">By username_1</span>
-        <span class="comments"> <i class="fa fa-comments" aria-hidden="true"></i> Comments </span>
+        <span class="comments">
+          <div class="resource_id_hidden">${resource.id}</div>
+          <div class="user_id_hidden">${resource.user_id}</div>
+          <i class="fa fa-comments" aria-hidden="true"></i> Comments </span>
         </div>
         </div>
         </article>`));
       }
     });
 
-  $(".nav_bar_logo").click (function() {
-    window.location.href = "/";
-  })
+    $(document).on('click', 'span.comments', function() {
+      const resource_id = $(this).find("div.resource_id_hidden").text();
+      console.log($(this).find("div.resource_id_hidden").text());
+      window.location.href = `/${resource_id}/comments`;
+    });
 
-  $(".user_button").click( function() {
-    window.location.href = "/:id/myresources";
-  })
+    $(document).on('click', 'span.url', function() {
+      var myUrl = $(this).text();
+      myUrl = "http://" + myUrl.trim();
+      window.location.href = myUrl;
+    });
 
 $("button.reset_button").click(function() {
   $("main.search_result").empty();
@@ -95,7 +103,15 @@ $("form.navbar-form").submit(function (event) {
       }
     });
    event.preventDefault();
-  });
 
+  });
+    $(".nav_bar_logo").click (function() {
+      window.location.href = "/";
+    })
+
+    $("a.nav-item.user_button").click(function() {
+      const user_id = $(this).find("div.hidden_user_id").text();
+      window.location.href = `/${user_id}/myresources`;
+    });
 
 });

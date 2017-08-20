@@ -60,10 +60,6 @@ app.get('/login', (req, res) => {
   res.render('login');
 });
 
-app.get('/get_url/:url', (req, res) => {
-  res.redirect(req.params.url);
-});
-
 app.put('/:id', (req, res) => {
   knex('users').select('*').where('id', req.session.user_id).then((user_info) => {
     knex('users').where('id', req.session.user_id)
@@ -80,6 +76,11 @@ app.get("/get/resources", (req, res) => {
   });
 });
 
+app.get("/:resource_id/comments", (req, res) => {
+  knex('comments').select('*').where("resource_id", req.params.resource_id).then((results) => {
+    res.render("resourceComments", results);
+  });
+});
 
 app.get("/", (req, res) => {
   if (!req.session.user_id){

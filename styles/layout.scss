@@ -86,7 +86,17 @@ h3:after {
   padding: 20px 0 0 30px;
 }
 
-
+div {
+  &.resource_id_hidden {
+    display: none;
+  }
+  &.user_id_hidden {
+    display: none;
+  }
+  &.hidden_user_id {
+    display: none;
+  }
+}
 
 body {
   background-color: #EEE;
