@@ -1,71 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>Home Page</title>
+<head>
+  <title>Home Page</title>
 
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Bootstrap CSS -->
-    <link href="https://fonts.googleapis.com/css?family=Istok+Web:400,700" rel="stylesheet">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
-    <script src="https://use.fontawesome.com/c9776dca59.js"></script>
+  <!-- Bootstrap CSS -->
+  <link href="https://fonts.googleapis.com/css?family=Istok+Web:400,700" rel="stylesheet">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+  <script src="https://use.fontawesome.com/c9776dca59.js"></script>
 
 
-    <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
-    <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
-    <link rel="stylesheet" href="/styles/resourceComments.css" type="text/css" />
-    <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+  <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
+  <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/resourceComments.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
 
-  </head>
-    <% include ./partials/_nav-bar %>
+</head>
+<% include ./partials/_nav-bar %>
 
 <body id ="font_override">
   <div class="container1">
 
     <BR><BR><BR>
-      <!-- <div class="card-header">
-        Resource Title
-      </div>
-      <div class="card-block">
-        <p class="card-text"> Resource Description </p>
-      </div>
-      <div class="card-footer text">
-        <div class="user-comments">
-          <span class = "user_name"> By username_1 </span>
-          <span class = "like"> <i class="fa fa-heart-o" aria-hidden="true"></i> <i class="fa fa-heart" aria-hidden="true"></i> 5 </span>
-        </div>
-    </div> -->
-      </div><BR><BR><BR>
+    </div><BR><BR><BR>
 
-        <div class="comments_footer">
-          <h3 class = "main_header">
-            <i class="fa fa-comments fa-1x" aria-hidden="true"></i>
-              <span class="header_horizontal_line">
-              Comments
-              </span>
-          </h3><br>
-          </div>
-        <div class="container_comments">
+      <div class="comments_footer">
+        <h3 class = "main_header">
+          <i class="fa fa-comments fa-1x" aria-hidden="true"></i>
+          <span class="header_horizontal_line">
+            Comments
+          </span>
+        </h3><br>
+      </div>
+      <div class="container_comments">
         <!-- <H6 class = "user_name"> By Username_1 </H6><br>
         <H8 class = "comments_field"> I can't believe you made such a fuggly page</H8> -->
-        </div>
-        <br><br>
+      </div>
+      <br><br>
 
-        <section class="new_comments">
-          <h4 class="inputheader">Comments</h4>
-          <form method="POST" action="/<%= resource_id %>/comments">
-            <textarea class="commentform" name="comment_input" placeholder="Comments?" maxlength="250"></textarea><br>
-            <input type="submit" value="Submit">
-          </form>
-        </section>
+      <section class="new_comments">
+        <h4 class="inputheader">Comments</h4>
+        <form method="POST" action="/<%= resource_id %>/comments">
+          <textarea class="commentform" name="comment_input" placeholder="Comments?" maxlength="250"></textarea><br>
+          <input type="submit" value="Submit">
+        </form>
+      </section>
 
-        <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="/scripts/app.js"></script>
-    <script type="text/javascript" src="/scripts/comments_script.js"></script>
-  </body>
+      <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+      <script type="text/javascript" src="/scripts/app.js"></script>
+      <script type="text/javascript" src="/scripts/comments_script.js"></script>
+    </body>
 
-</html>
+    </html>

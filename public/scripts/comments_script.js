@@ -41,5 +41,4 @@ $("form").on("submit", function(event){
   }).done(function(){
     form.reset();
     });
-  // event.preventDefault();
   });
