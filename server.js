@@ -26,7 +26,7 @@ app.use(cookieSession({
   name: 'session',
   secret: "Some kind of secret here",
   maxAge: 24 * 60 * 60 * 1000 // 24 hours
-}))
+}));
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(methodOverride('_method'));
@@ -63,14 +63,20 @@ app.get('/login', (req, res) => {
 
 app.get('/logout', (req, res) => {
   res.render('logout');
-})
+});
+
+app.get('/:id/profile', (req, res) => {
+  const templateVariable = {user_name: req.session.user_name, user_id: req.session.user_id};
+  res.render("update_profile", templateVariable);
+});
 
 app.put('/:id', (req, res) => {
   knex('users').select('*').where('id', req.session.user_id).then((user_info) => {
     knex('users').where('id', req.session.user_id)
     .update({name: req.body.user_name || user_info[0].name , email: req.body.user_email || user_info[0].email, password: req.body.user_password || user_info[0].password})
     .then((results) => {
-      res.redirect('/');
+      req.session.user_name = user_info[0].name;
+      res.status(302).redirect('/');
     });
   });
 });
@@ -94,8 +100,8 @@ app.get("/", (req, res) => {
   }
   else {
   knex.select("name").from("topics").then((topics) => {
-      let templateVariable = {topics, user_name: req.session.user_name, user_id: req.session.user_id};
-      res.render("index", templateVariable);
+    let templateVariable = {topics, user_name: req.session.user_name, user_id: req.session.user_id};
+    res.render("index", templateVariable);
     });
   }
 });
@@ -135,8 +141,9 @@ app.get("/:resource_id/all_comments", (req, res) => {
   knex.select("*").from("comments").fullOuterJoin('users', 'users.id', 'comments.user_id')
   .where("comments.resource_id", req.params.resource_id).then((results) => {
     res.json(results);
-  })
-})
+  });
+});
+
 // Search
 app.post("/search",(req, res) => {
     res.redirect(`/${req.body.navbar_search}/search`);
@@ -147,7 +154,6 @@ app.get("/:query/search", (req, res) => {
     res.json(results);
   });
 });
-
 
 app.get("/:resource_id/comments", (req, res) => {
     knex.select("*").from('comments').fullOuterJoin('users', 'users.id', 'comments.user_id')
