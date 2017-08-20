@@ -1,45 +1,3 @@
-// $(() => {
-//   $.ajax({
-//     method: "GET",
-//     url: "/api/users"
-//   }).done((users) => {
-//     $("<h3>").text("USERS:").appendTo($("body"));
-//     for(user of users) {
-//       $("<div>").text(`${user.name} --> ${user.email} --> ${user.password}`).appendTo($("body"));
-//     }
-//   });
-//
-//   $.ajax({
-//     method: "GET",
-//     url: "/api/resources"
-//   }).done((resources) => {
-//     $("<h3>").text("RESOURCES:").appendTo($("body"));
-//     for (resource of resources){
-//       console.log(resource.title);
-//       $("<div>").text(resource.title + " --> " + resource.url + " --> " + resource.description).appendTo($("body"));
-//     }
-//   });
-//
-//   $.ajax({
-//     method: "GET",
-//     url: "/api/comments"
-//   }).done((comments) => {
-//     $("<h3>").text("COMMENTS:").appendTo($("body"));
-//     for (comment of comments){
-//       $("<div>").text(comment.content).appendTo($("body"));
-//     }
-//   });
-//
-//   $.ajax({
-//     method: "GET",
-//     url: "/api/topics"
-//   }).done((topics) => {
-//     $("<h3>").text("TOPICS:").appendTo($("body"));
-//     for (topic of topics){
-//       $("<div>").text(topic.name).appendTo($("body"));
-//     }
-//   });
-// });
 $(function () {
 
   $("i.fa.fa-plus.fa-2x").click(function() {
@@ -52,14 +10,23 @@ $(function () {
     $("input.form-control").focus();
   });
 
-  $("i.fa.fa-heart").click(function() {
-    $("i.fa.fa-heart-o").toggle("fast");
-    $("i.fa.fa-heart").toggle("fast");
-  });
+  $.fn.toggle2classes = function(class1, class2){
+  if( !class1 || !class2 )
+    return this;
 
-  $("i.fa.fa-heart-o").click(function() {
-    $("i.fa.fa-heart-o").toggle("fast");
-    $("i.fa.fa-heart").toggle("fast");
+  return this.each(function(){
+    var $elm = $(this);
+
+    if( $elm.hasClass(class1) || $elm.hasClass(class2) )
+      $elm.toggleClass(class1 +' '+ class2);
+
+    else
+      $elm.addClass(class1);
+  });
+};
+
+  $(document).on("click", "span.like", function() {
+    $(this).find("i.fa").toggle2classes('fa-heart', 'fa-heart-o');
   });
 
   $.ajax({
@@ -79,20 +46,20 @@ $(function () {
         <div class="url-like">
         <span class="url"> ${resource.url}</span>
         <span class="like">
-        <i class="fa fa-heart-o" aria-hidden="true"></i>
         <i class="fa fa-heart" aria-hidden="true"></i>
         </span>
         </div>
-
         <div class="username-comments">
         <span class="username">By ${resource.name}</span>
         <span class="comments">
           <div class="resource_id_hidden">${resource.id}</div>
           <div class="user_id_hidden">${resource.user_id}</div>
-          <i class="fa fa-comments" aria-hidden="true"></i> Comments </span>
-        </div>
-        </div>
-        </article>`));
+          <i class="fa fa-comments" aria-hidden="true"></i>
+          Comments
+        </span>
+      </div>
+      </div>
+    </article>`));
       }
     });
 
