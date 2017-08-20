@@ -137,6 +137,17 @@ app.get("/:resource_id/all_comments", (req, res) => {
     res.json(results);
   })
 })
+// Search
+app.post("/search",(req, res) => {
+    res.redirect(`/${req.body.navbar_search}/search`);
+});
+
+app.get("/:query/search", (req, res) => {
+  knex('resources').where('title', 'like', `%${req.params.query}%`).orWhere('url', 'like', `%${req.params.query}%`).orWhere('description', 'like', `%${req.params.query}%`).then((results) => {
+    res.json(results);
+  });
+});
+
 
 app.get("/:resource_id/comments", (req, res) => {
     knex.select("*").from('comments').fullOuterJoin('users', 'users.id', 'comments.user_id')
