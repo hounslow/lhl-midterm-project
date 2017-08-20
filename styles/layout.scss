@@ -48,13 +48,19 @@ nav button.btn {
   display: inline-block;
 }
 
-i {
-  &.fa.fa-heart-o {
-    display: none;
-  }
-}
+// i {
+//   &.fa.fa-heart-o {
+//     display: none;
+//   }
+// }
 
 /*main*/
+
+span {
+  &.like {
+    z-index: 1;
+  }
+}
 
 h3 {
   position: relative;
