@@ -51,8 +51,9 @@ app.use(express.static("public"));
 
 app.post('/login/:id', (req, res) => {
   req.session.user_id = req.params.id;
-  knex('users').select("name").where("id", req.session.user_id).then((user_name) => {
+  knex('users').select("*").where("id", req.session.user_id).then((user_name) => {
     req.session.user_name = user_name[0].name;
+    req.session.user_email = user_name[0].email;
     return res.redirect('/');
   })
 });
@@ -96,7 +97,10 @@ app.get("/resources", (req, res) => {
 
 
 app.get("/:id/user_resources", (req, res) => {
-  knex.select('*').from('resources').fullOuterJoin('users', 'users.id', 'resources.user_id').where('user_id', req.params.id).then((resources) => {
+  knex.select(['resources.id', 'resources.title', 'resources.url', 'resources.description', 'users.name'])
+  .from('users')
+  .innerJoin('resources', 'users.id', 'resources.user_id').where('user_id', req.session.user_id)
+  .then((resources) => {
     res.json(resources);
   });
 });
@@ -107,7 +111,7 @@ app.get("/", (req, res) => {
   }
   else {
   knex.select("name").from("topics").then((topics) => {
-    let templateVariable = {topics, user_name: req.session.user_name, user_id: req.session.user_id};
+    let templateVariable = {topics, user_name: req.session.user_name, user_id: req.session.user_id, email: req.session.email};
     res.render("index", templateVariable);
     });
   }
@@ -137,7 +141,7 @@ app.get("/:id/myresources", (req, res) => {
   else {
     knex.select("name").from("topics").then((topics) => {
         knex.select("*").from("resources").where("user_id", req.session.user_id).then((resources) => {
-          let templateVariable = {topics, user_name: req.session.user_name, user_id: req.session.user_id, resources};
+          let templateVariable = {topics, user_name: req.session.user_name, user_id: req.session.user_id, resources, email: req.session.email};
           res.render("myresources", templateVariable);
         });
     });
