@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
     <script src="https://use.fontawesome.com/c9776dca59.js"></script>
 
+
     <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
     <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
     <link rel="stylesheet" href="/styles/resourceComments.css" type="text/css" />
@@ -19,9 +20,9 @@
   </head>
     <% include ./partials/_nav-bar %>
 
+  <div class="container1">
   <body id = "font_override">
     <BR><BR><BR>
-    <section class="card-box">
       <div class="card-header">
         Resource Title
       </div>
@@ -34,7 +35,7 @@
           <span class = "like"> <i class="fa fa-heart-o" aria-hidden="true"></i> <i class="fa fa-heart" aria-hidden="true"></i> 5 </span>
         </div>
       </div>
-    </section>
+    </div>
       </div><BR><BR><BR>
         <div class="comments_footer">
           <h3 class = "main_header">
@@ -42,19 +43,21 @@
               <span class="header_horizontal_line">
               Comments
               </span>
-            </h3><br>
-          <H6 class = "user_name"> By Username_1 </H6><br>
-          <H8 class = "comments_field"> I can't believe you made such a fuggly page</H8><br><br>
+          </h3><br>
+        <div class = "container_comments">
+        <!-- <H6 class = "user_name"> By Username_1 </H6><br>
+        <H8 class = "comments_field"> I can't believe you made such a fuggly page</H8> -->
+        </section>
+        <br><br>
       </div>
 
         <section class="new_comments">
           <h4 class="inputheader">Comments</h4>
           <form method="POST" action="/comments">
-          <textarea class="commentform" name="text" placeholder="What are you thinking?" maxlength="250"></textarea><br>
-          <input type="submit" value="Submit">
+            <textarea class="commentform" name="comment_input" placeholder="Comments?" maxlength="250"></textarea><br>
+            <input type="submit" value="Submit">
           </form>
         </section>
-
-    </main>
   </body>
+  </div>
 </html>

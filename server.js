@@ -104,6 +104,7 @@ app.post("/", (req, res) => {
   });
 });
 
+
 // My Resources page
 app.get("/:id/myresources", (req, res) => {
   if (!req.session.user_id){
@@ -118,6 +119,34 @@ app.get("/:id/myresources", (req, res) => {
   });
 }
 });
+
+app.get("/:resource_id/comments", (req, res) => {
+  knex.("comments").select("id").where('content', req.body.comments).then((comment_id) => {
+  res.render('resourceComments');
+  });
+});
+
+app.post("/:resource_id/comments", (req, res) => {
+  knex('comments').insert({user_id: req.session.user_id, resource_id: req.params.resource_id, content: req.body.comment_input})
+  .then((results) => {
+    res.redirect(`/${req.params.resource_id}/comments`);
+  });
+});
+
+// app.get("/:resource_id/comments", (req, res) => {
+//   if (!req.session.user_id){
+//     res.redirect('/login')
+//   }
+//   else {
+//   knex.select("*").from("comments").where("resource_id", req.params.resource_id).then((comments) => {
+//     knex.select("names, emails").from("users").where("id", req.session.user_id).then((user_name) => {
+//       let templateVariable = {comments, user_name, user_id: req.session.user_id};
+//       res.render('resourceComments', templateVariable);
+//     });
+//   });
+// }
+// });
+
 
 app.listen(PORT, () => {
   console.log("Example app listening on port " + PORT);
