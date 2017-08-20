@@ -51,9 +51,10 @@ app.use(express.static("public"));
 
 app.post('/login/:id', (req, res) => {
   req.session.user_id = req.params.id;
-  const templateVariable = {user_id: req.session.user_id};
-  return res.redirect('/');
-  // res.render('update_profile', templateVariable);
+  knex('users').select("name").where("id", req.session.user_id).then((user_name) => {
+    req.session.user_name = user_name[0].name;
+    return res.redirect('/');
+  })
 });
 
 app.get('/login', (req, res) => {
@@ -83,14 +84,7 @@ app.get("/get/resources", (req, res) => {
 
 app.get("/:id/user_resources", (req, res) => {
   knex.select('*').from('resources').fullOuterJoin('users', 'users.id', 'resources.user_id').where('user_id', req.params.id).then((resources) => {
-  // knex('resources').select('*').where('user_id', req.params.id).then((resources) => {
     res.json(resources);
-  });
-});
-
-app.get("/:resource_id/comments", (req, res) => {
-  knex('comments').select('*').where("resource_id", req.params.resource_id).then((results) => {
-    res.render("resourceComments", results);
   });
 });
 
@@ -100,12 +94,10 @@ app.get("/", (req, res) => {
   }
   else {
   knex.select("name").from("topics").then((topics) => {
-    knex.select("name").from("users").where("id", req.session.user_id).then((user_name) => {
-      let templateVariable = {topics, user_name, user_id: req.session.user_id};
+      let templateVariable = {topics, user_name: req.session.user_name, user_id: req.session.user_id};
       res.render("index", templateVariable);
     });
-  });
-}
+  }
 });
 
 app.post("/", (req, res) => {
@@ -118,6 +110,11 @@ app.post("/", (req, res) => {
   });
 });
 
+app.get("/:id/resource", (req, res) => {
+  knex.select('*').from('resources').fullOuterJoin('users', 'users.id', 'resources.user_id').where('resources.id', req.params.id).then((resources) => {
+    res.json(resources);
+  });
+});
 
 // My Resources page
 app.get("/:id/myresources", (req, res) => {
@@ -126,20 +123,27 @@ app.get("/:id/myresources", (req, res) => {
   }
   else {
     knex.select("name").from("topics").then((topics) => {
-      knex.select("name").from("users").where("id", req.session.user_id).then((user_name) => {
         knex.select("*").from("resources").where("user_id", req.session.user_id).then((resources) => {
-          let templateVariable = {topics, user_name, user_id: req.session.user_id, resources};
+          let templateVariable = {topics, user_name: req.session.user_name, user_id: req.session.user_id, resources};
           res.render("myresources", templateVariable);
         });
-      });
     });
   }
 });
 
+app.get("/:resource_id/all_comments", (req, res) => {
+  knex.select("*").from("comments").fullOuterJoin('users', 'users.id', 'comments.user_id')
+  .where("comments.resource_id", req.params.resource_id).then((results) => {
+    res.json(results);
+  })
+})
+
 app.get("/:resource_id/comments", (req, res) => {
-  knex.("comments").select("id").where('content', req.body.comments).then((comment_id) => {
-  res.render('resourceComments');
-  });
+    knex.select("*").from('comments').fullOuterJoin('users', 'users.id', 'comments.user_id')
+    .where("comments.resource_id", req.params.resource_id).then((comments) => {
+    const templateVariable = {user_name: req.session.user_name, user_id: req.session.user_id, comments, resource_id: req.params.resource_id};
+    res.render("resourceComments", templateVariable);
+    });
 });
 
 app.post("/:resource_id/comments", (req, res) => {
@@ -148,21 +152,6 @@ app.post("/:resource_id/comments", (req, res) => {
     res.redirect(`/${req.params.resource_id}/comments`);
   });
 });
-
-// app.get("/:resource_id/comments", (req, res) => {
-//   if (!req.session.user_id){
-//     res.redirect('/login')
-//   }
-//   else {
-//   knex.select("*").from("comments").where("resource_id", req.params.resource_id).then((comments) => {
-//     knex.select("names, emails").from("users").where("id", req.session.user_id).then((user_name) => {
-//       let templateVariable = {comments, user_name, user_id: req.session.user_id};
-//       res.render('resourceComments', templateVariable);
-//     });
-//   });
-// }
-// });
-
 
 app.listen(PORT, () => {
   console.log("Example app listening on port " + PORT);
