@@ -120,6 +120,17 @@ app.get("/:id/myresources", (req, res) => {
 }
 });
 
+// Search
+app.post("/search",(req, res) => {
+    res.redirect(`/${req.body.navbar_search}/search`);
+});
+
+app.get("/:query/search", (req, res) => {
+  knex('resources').where('title', 'like', `%${req.params.query}%`).orWhere('url', 'like', `%${req.params.query}%`).orWhere('description', 'like', `%${req.params.query}%`).then((results) => {
+    res.json(results);
+  });
+});
+
 
 
 app.listen(PORT, () => {
