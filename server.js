@@ -85,7 +85,10 @@ app.put('/:id', (req, res) => {
 });
 
 app.get("/resources", (req, res) => {
-  knex.select('*').from('resources').innerJoin('users', 'users.id', 'resources.user_id').then((resources) => {
+  knex.select(['resources.id', 'resources.title', 'resources.url', 'resources.description', 'users.name'])
+  .from('users')
+  .innerJoin('resources', 'resources.user_id', 'users.id')
+  .then((resources) => {
     console.log(resources);
     res.json(resources);
   });

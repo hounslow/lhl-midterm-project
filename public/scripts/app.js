@@ -65,6 +65,7 @@ $(function () {
 
     $(document).on('click', 'span.comments', function() {
       const resource_id = $(this).find("div.resource_id_hidden").text();
+      console.log(resource_id);
       window.location.href = `/${resource_id}/comments`;
     });
 
