@@ -25,8 +25,9 @@ $(function () {
       </div>
       <div class="card-footer text">
       <div class="user-comments">
+      <span class="url"> ${resource[0].url}</span>
       <span class = "user_name"> ${resource[0].name} </span>
-      <span class = "like"> <i class="fa fa-heart-o" aria-hidden="true"></i> <i class="fa fa-heart" aria-hidden="true"></i> 5 </span>
+      <span class = "like"></i> <i class="fa fa-heart" aria-hidden="true"></i></span>
       </div>
       </div>`));
     });
