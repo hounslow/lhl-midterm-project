@@ -34,7 +34,7 @@ $(function () {
     url: "/resources"
   }).done((resources) => {
     for (resource of resources){
-      $("div.row.justify-content-around").prepend($(`
+      $("div.row.justify-content-around").append($(`
         <article class="col-4 resource-block">
         <div class="card-header">
         ${resource.title}
@@ -111,11 +111,13 @@ $(function () {
             <div class="card-footer">
             <div class="url-like">
             <span class="url"> ${resource.url}</span>
-            <span class="like"> <i class="fa fa-heart-o" aria-hidden="true"></i> <i class="fa fa-heart" aria-hidden="true"></i> 5 </span>
+            <span class="like"> <i class="fa fa-heart-o" aria-hidden="true"></i></span>
             </div>
             <div class="username-comments">
-            <span class="username">By username_1</span>
-            <span class="comments"> <i class="fa fa-comments" aria-hidden="true"></i> Comments </span>
+            <span class="username">By ${resource.name}</span>
+            <span class="comments"> <i class="fa fa-comments" aria-hidden="true"></i>
+              <div class="resource_id_hidden">${resource.id}</div>
+             Comments </span>
             </div>
             </div>
             </article>

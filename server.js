@@ -156,7 +156,13 @@ app.post("/search",(req, res) => {
 });
 
 app.get("/:query/search", (req, res) => {
-  knex('resources').where('title', 'like', `%${req.params.query}%`).orWhere('url', 'like', `%${req.params.query}%`).orWhere('description', 'like', `%${req.params.query}%`).then((results) => {
+  knex.select(['resources.id', 'resources.title', 'resources.url', 'resources.description', 'users.name'])
+  .from('users')
+  .innerJoin('resources', 'users.id', 'resources.user_id').where('user_id', req.session.user_id)
+  .where('title', 'like', `%${req.params.query}%`)
+  .orWhere('url', 'like', `%${req.params.query}%`)
+  .orWhere('description', 'like', `%${req.params.query}%`)
+  .then((results) => {
     res.json(results);
   });
 });

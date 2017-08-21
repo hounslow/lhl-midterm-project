@@ -16,7 +16,7 @@ $(function () {
     method: "GET",
     url: `/${resource_id}/resource`
   }).done((resource) => {
-    $('div.container1').append($(`
+    $('div.container1').prepend($(`
       <div class="card-header">
       ${resource[0].title}
       </div>
