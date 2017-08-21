@@ -1,19 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
-<script src="https://use.fontawesome.com/c9776dca59.js"></script>
+  <head>
+    <title>Pintellect</title>
+      <script src="https://userse.fontawesome.com/c9776dca59.js"></script>
+      <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
+       <link rel="stylesheet" href="/styles/login.css" type="text/css" />
+  </head>
 
-Hello! You aren't logged in.
+<h2>
+Hello! You aren't logged in to Pintellect.
+</h2>
 
-<form method="POST" action="/login/1">
-  <button type="submit" class="btn btn-primary">Login as user 1</button>
-</form>
+<div class ="user-container">
+  <form method="POST" action="/login/1">
+    <button type="submit" class="btn btn-primary">Login as User 1</button>
+  </form>
 
-<form method="POST" action="/login/2">
-  <button type="submit" class="btn btn-primary">Login as user 2</button>
-</form>
+  <form method="POST" action="/login/2">
+    <button type="submit" class="btn btn-primary">Login as User 2</button>
+  </form>
 
-<form method="POST" action="/login/3">
-  <button type="submit" class="btn btn-primary">Login as user 3</button>
-</form>
+  <form method="POST" action="/login/3">
+    <button type="submit" class="btn btn-primary">Login as User 3</button>
+  </form>
+</div>
 
 </html>

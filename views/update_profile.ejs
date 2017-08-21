@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Home Page</title>
+  <title>Pintellect</title>
 
   <!-- Required meta tags -->
   <meta charset="utf-8">
@@ -18,40 +18,45 @@
 
 </head>
 
+<body class = "update_profile_container">
+  <h3 class="update_profile_heading">Update Profile</h3>
 
-  <div>
     <form class="container" method="POST" action="/<%=user_id%>?_method=PUT"%>
+
       <div class="form-group row">
-        <label for="user_name" class="col-sm-2 col-form-label">Name</label>
-        <div class="col-sm-5">
-          <input type="name" class="form-control" id="user_name" name="user_name" placeholder="Name">
+        <label for="user_name" class="col-sm-2 col-form-label update_profile_name_label">Name</label>
+        <div class="col-sm-5" style="display: inline-block;">
+          <input type="name" class="form-control update_profile_name_input" id="user_name" name="user_name" placeholder="Name">
         </div>
       </div>
+
       <div class="form-group row">
         <label for="user_email" class="col-sm-2 col-form-label">Email</label>
         <div class="col-sm-5">
           <input type="email" class="form-control" id="user_email" name="user_email" placeholder="Email">
         </div>
       </div>
+
       <div class="form-group row">
         <label for="user_password" class="col-sm-2 col-form-label">Password</label>
         <div class="col-sm-5">
           <input type="password" class="form-control" id="user_password" name="user_password" placeholder="Password">
         </div>
       </div>
+
       <div class="form-group row">
         <div class="offset-sm-2 col-sm-10">
           <button type="submit" class="btn btn-primary">Update Profile</button>
         </div>
       </div>
-    </form>
-  </div>
 
+    </form>
+
+  </body>
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
   <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
   <!-- <script type="text/javascript" src="/scripts/app.js"></script> -->
-</body>
 </html>

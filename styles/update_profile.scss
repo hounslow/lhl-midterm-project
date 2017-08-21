@@ -1,8 +1,18 @@
-div {
-  &.container {
-    display: flex;
-    justify-content: space-around;
-  }
-
-
+.update_profile_heading {
+  padding-left: 20px
 }
+
+.update_profile_container {
+  padding: 20px
+}
+
+.update_profile_name_input {
+  margin: 15px;
+}
+
+.update_profile_name_label {
+  margin: -15px;
+}
+
+
+

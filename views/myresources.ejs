@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Home Page</title>
+    <title>Pintellect</title>
 
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -60,11 +60,19 @@
     </div>
 
     <section class="user_info_header">
-      <%= email %>
+    <div class = user_container>
+      <span class ="my_resources_user_name">
+      <i class="fa fa-user" aria-hidden="true"></i>
       <%= user_name %>
-      <form method="GET" action="/<%= user_id %>/profile">
+      </span>
+      <span class = "my_resources_email">
+      <%= email %>
+      </span>
+
+      <form class = "my_resources_update" method="GET" action="/<%= user_id %>/profile">
         <button class="update_user_profile"> Update User Information </button>
       </form>
+    </div>
     </section>
 
 

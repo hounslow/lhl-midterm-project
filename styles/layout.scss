@@ -24,7 +24,13 @@ a .fa {
 .user_button {
   background: $primary-color;
   border-radius: 5px;
-  padding: 7px;
+  padding: 16px;
+  color: #244751;
+  &:hover {
+    background-color: $card-hover-color;
+    text-decoration: none;
+    color: $card-hover-font;
+  }
 }
 
 form {
@@ -150,6 +156,7 @@ body {
   padding: 10px;
   height: 150px;
   color: #9B9B9B;
+  padding: 22px;
 }
 
 .card-footer {
@@ -187,4 +194,29 @@ span.url {
 .comments {
   cursor: pointer;
   float: right;
+}
+
+//myResrouce Page
+h4 {
+  padding-left: 36px;
+  padding-top: 30px;
+}
+
+.user_container {
+  display: flex;
+  justify-content: space-around;
+  padding: 30px;
+}
+
+.my_resources_user_name {
+  font-weight: bold;
+  font-size: 30px;
+}
+
+.my_resources_email {
+  font-size: 25px
+}
+
+.update_user_profile {
+  padding: 6px;
 }

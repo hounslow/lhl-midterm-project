@@ -1,0 +1,20 @@
+h2 {
+  text-align: center;
+}
+
+.user-container {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+button {
+  font-family: 'Istok Web', sans-serif;
+  width: 160%;
+  height: 160%;
+  background-color: #8DA9C4;
+}
+
+button:hover {
+  background-color: #13315C;
+  color: #F4F4F4;
+}
