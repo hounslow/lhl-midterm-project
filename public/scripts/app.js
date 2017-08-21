@@ -6,7 +6,7 @@ $(function () {
   });
 
   $("i.fa.fa-search.fa-2x").click(function() {
-    $("form.navbar-form").toggle("slow");
+    $("form.navbar-form").slideToggle("fast");
     $("input.form-control").focus();
   });
 

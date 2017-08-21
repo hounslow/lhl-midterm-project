@@ -16,12 +16,6 @@ const morgan      = require('morgan');
 const knexLogger  = require('knex-logger');
 const methodOverride = require('method-override');
 
-// Seperated Routes for each Resource
-const usersRoutes = require("./routes/users");
-const resourcesRoutes = require("./routes/resources");
-const commentsRoutes = require("./routes/comments");
-const topicsRoutes = require("./routes/topics");
-
 app.use(cookieSession({
   name: 'session',
   secret: "Some kind of secret here",
@@ -80,6 +74,7 @@ app.put('/:id', (req, res) => {
     .update({name: req.body.user_name || user_info[0].name , email: req.body.user_email || user_info[0].email, password: req.body.user_password || user_info[0].password})
     .then((results) => {
       req.session.user_name = user_info[0].name;
+      req.session.user_email = user_info[0].email;
       res.status(302).redirect('/');
     });
   });
@@ -141,7 +136,7 @@ app.get("/:id/myresources", (req, res) => {
   else {
     knex.select("name").from("topics").then((topics) => {
         knex.select("*").from("resources").where("user_id", req.session.user_id).then((resources) => {
-          let templateVariable = {topics, user_name: req.session.user_name, user_id: req.session.user_id, resources, email: req.session.email};
+          let templateVariable = {topics, user_name: req.session.user_name, user_id: req.session.user_id, resources, email: req.session.user_email};
           res.render("myresources", templateVariable);
         });
     });
