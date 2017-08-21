@@ -26,7 +26,7 @@ $(function () {
   };
 
   $(document).on("click", "span.like", function() {
-    $(this).find("i.fa").toggle2classes('fa-heart', 'fa-heart-o');
+    $(this).find("i.fa").toggle2classes('fa-heart-o', 'fa-heart');
   });
 
   $.ajax({
@@ -46,7 +46,7 @@ $(function () {
         <div class="url-like">
         <span class="url"> ${resource.url}</span>
         <span class="like">
-        <i class="fa fa-heart" aria-hidden="true"></i>
+        <i class="fa fa-heart-o" aria-hidden="true"></i>
         </span>
         </div>
         <div class="username-comments">

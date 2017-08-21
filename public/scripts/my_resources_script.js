@@ -10,6 +10,25 @@ $(function () {
     $("input.form-control").focus();
   });
 
+  $.fn.toggle2classes = function(class1, class2){
+    if( !class1 || !class2 )
+    return this;
+
+    return this.each(function(){
+      var $elm = $(this);
+
+      if( $elm.hasClass(class1) || $elm.hasClass(class2) )
+      $elm.toggleClass(class1 +' '+ class2);
+
+      else
+      $elm.addClass(class1);
+    });
+  };
+
+  $(document).on("click", "span.like", function() {
+    $(this).find("i.fa").toggle2classes('fa-heart-o', 'fa-heart');
+  });
+
   const user_id = $('div.hidden_user_id').text();
 
   $.ajax({
@@ -28,7 +47,7 @@ $(function () {
         <div class="card-footer">
         <div class="url-like">
         <span class="url"> ${resource.url}</span>
-        <span class="like"> <i class="fa fa-heart-o" aria-hidden="true"></i> <i class="fa fa-heart" aria-hidden="true"></i> 5 </span>
+        <span class="like"> <i class="fa fa-heart-o" aria-hidden="true"></i> </span>
         </div>
 
         <div class="username-comments">
@@ -58,7 +77,7 @@ $(function () {
     $(".nav_bar_logo_name").click (function() {
       window.location.href = "/";
     });
-    
+
     $("a.nav-item.user_button").click(function() {
       const user_id = $(this).find("div.hidden_user_id").text();
       window.location.href = `/${user_id}/myresources`;
